@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Orders{% endblock %}
+
+{% block body %}
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Bestellingen</h1>
+            <table class="table is-striped is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>Tafel</th>
+                        <th>Bestelling</th>
+                        <th>Status</th>
+                        <th>Bestellingstijd</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for order in order_list %}
+                    <tr>
+                        <td>{{ order.table.tablenumber.table_number }}</td>
+                        <td>{{ order.item }} {{ order.quantity }}</td>
+                        <td>{{ order.status }}</td>
+                        <td>{{ order.timestamp|date:'d M' }} - {{ order.timestamp|time:'H:i' }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}

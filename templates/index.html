@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load widget_tweaks %}
+
+{% block static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+{% endblock %}
+
+
+{% block title %}
+    {% if request.user.is_authenticated %}
+        Home
+    {% else %}
+        Login
+    {% endif%}
+{% endblock %}
+
+{% block body %}
+    <section class="hero is-danger is-fullheight hero-image">
+        <div class="hero-body">
+            <div class="container">
+                <!-- Home page if authenticated -->
+                {% if request.user.is_authenticated %}
+                    <h1 class="title is-1 animated bounceInDown">
+                        <span class="subtitle">Restaurant</span>
+                        <span style="font-family: 'Gloria Hallelujah', cursive;">PanCake</span>
+                    </h1>
+                    <a href="{% url 'menu:list' %}" class="tags has-addons animated bounceInUp">
+                        <span class="tag is-large">
+                            <i class="fas fa-utensils"></i>
+                        </span>
+                        <span class="tag is-warning is-large">Menu</span>
+                    </a>
+                {% else %}
+                    <div class="has-text-centered">
+                        <h1 class="title is-1 animated bounceIn">
+                            <span  style="font-family: 'Gloria Hallelujah', cursive;">PanCake</span>
+                             <span class="subtitle is-4">Order Management</span>
+                        </h1>
+                        <!-- LOGIN Form if not authenticated -->
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            {% for hidden in form.hidden_fields %}
+                                {{ hidden }}
+                            {% endfor %}
+                            
+                            {% for field in form.visible_fields %}
+                                <div class="field">
+                                    <div class="form-control ">
+                                        {{ field|add_class:'form-input has-text-centered is-capitalized' }}
+                                    </div>
+                                {% for field in field.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                                </div>
+                            {% endfor %}
+                            <input type="submit" value="Login" class="button is-success">
+                        </form>
+                        <!-- End form -->
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

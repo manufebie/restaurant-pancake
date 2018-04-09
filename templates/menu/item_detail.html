@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block nav %}
+    <div class="container">
+        {% include 'snippets/level_snippet.html' %}
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div class="tabs">
+        <ul>
+            <li><a href="{% url 'menu:list' %}">Terug naar naar menu</a></li>
+        </ul>
+    </div>
+
+    <div class="columns">
+        <div class="column">
+            <figure class="image">
+                <img src="{{ item.image.url }}" alt="">
+            </figure>
+        </div>
+        <div class="column">
+            <h1 class="subtitle is-1">{{ item.name }}</h1>
+            <p>{{ item.description }}</p>
+            {{ item.price }}
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="Add" class="button is-danger is-rounded">
+                {{ form }}
+            </form>
+        </div>
+    </div>
+{% endblock %}

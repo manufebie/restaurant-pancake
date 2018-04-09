@@ -1,0 +1,13 @@
+<section class="hero is-danger">
+    <div class="hero-body">
+        <div class="container">
+            <a href="{% url 'menu:list' %}">
+            <h1 class="title is-1 animated jackInTheBox">
+                <small class="subtitle is-4">Restaurant</small>
+                <span style="font-family: 'Gloria Hallelujah', cursive;">PanCake</span> 
+            </h1>
+            <p class="subtitle is-6 is-uppercase">Tafel {{ request.user.tablenumber }}</p>
+            </a>
+        </div>
+    </div>
+</section>

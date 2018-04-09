@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block nav %}
+    {% include 'snippets/navbar.html' %}
+{% endblock %}
+
+{% block body %}
+    <section class="section">
+        <div class="container">
+            <h1 class="subtitle is-1">Overzicht bestelling</h1>
+    
+            <div class="columns">
+                <div class="column is-12">
+                    <table class="table is-striped is-fullwidth">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Gekozen item</th>
+                                <th>Aantal</th>
+                                <th>Prijs</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in cart %}
+                            {% with menu_item=item.menu_item %}
+                                <tr>
+                                    <td>
+                                        <a href="{% url 'cart:remove' menu_item.id %}" class="delete is-medium"></a>
+                                    </td>
+                                    <td>{{ menu_item.name }}</td>
+                                    <td>
+                                        <span class="tag is-info">{{ item.quantity }}</span>
+                                    </td>
+                                    <td>€ {{ item.total_price }}</td>
+                                </tr>    
+                            {% endwith %}
+                        {% endfor %}
+                                <tr class="subtitle">
+                                    <td>Totaal</td>
+                                    <td colspan="2"></td>
+                                    <td>€ {{ cart.get_total_price }}</td>
+                                </tr>
+                        </tbody>
+                    </table>
+                    <form action="" method="POST" class="is-pulled-right">
+                        {% csrf_token %}
+                        <input type="submit" value="Bestellen" class="button is-success is-large">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,32 @@
+
+<!--
+<nav class="level">
+    <div class="level-left">
+        
+    </div>
+
+    <div class="level-right">
+        <a class="has-text-black" href="{% url 'cart:detail' %}">
+            <div class="control">
+                <div class="tags has-addons">
+                    <span class="tag is-dark is-medium">
+                        {% with total_items=cart|length %}
+                            {% if cart|length > 0 %}
+                                {{ total_items }} item{{ total_items|pluralize }}
+                            {% else %}
+                            Geen items
+                            {% endif %}
+                        {% endwith %}
+                    </span>
+                    <span class="tag is-success icon is-medium">
+                        <i class="fas fa-utensils"></i>
+                    </span>
+                    <span class="tag is-medium">
+                        € {{ cart.get_total_price }}
+                    </span>
+                </div>
+            </div>
+        </a>
+    </div>
+</nav>
+-->

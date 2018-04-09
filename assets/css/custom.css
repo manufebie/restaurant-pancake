@@ -1,0 +1,12 @@
+.form-control {
+    margin: 0 auto;
+    width: 25%; 
+}
+
+.form-input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px white solid;
+    color: #fff;
+    padding: 10px 10px;
+}
